@@ -1,5 +1,9 @@
+require('dotenv').config()
+const morgan = require('morgan')
 const express = require("express");
 const app = express();
+
+app.use(morgan('dev'))
 
 app.use(
     express.json({
@@ -12,8 +16,6 @@ app.get("/", (req, res) => {
     res.json({ status: true });
 });
 
-const port = 3001;
-
-app.listen(port, () => {
-    console.log("Server started");
+app.listen(process.env.PORT, () => {
+    console.log("Server started at port " + process.env.PORT);
 });
